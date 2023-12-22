@@ -1,3 +1,14 @@
 from django.shortcuts import render
 
-# Create your views here.
+def buku(request):
+    judul = ["Belajar Django", "Belajar Python", "Belajar Bootstrap"]
+    penulis = "syaroh"
+    
+    konteks = {
+        'title': judul,
+        'penulis': penulis,
+    }
+    return render(request, 'buku.html', konteks)
+
+def penerbit(request):
+    return render(request, 'penerbit.html')
