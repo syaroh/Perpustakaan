@@ -1,14 +1,24 @@
 from django.shortcuts import render
+from perpustakaan.models import Buku
+from perpustakaan.form import FormBuku
+
 
 def buku(request):
-    judul = ["Belajar Django", "Belajar Python", "Belajar Bootstrap"]
-    penulis = "syaroh"
+    books = Buku.objects.all()
     
     konteks = {
-        'title': judul,
-        'penulis': penulis,
+        'books' : books,
     }
     return render(request, 'buku.html', konteks)
 
 def penerbit(request):
     return render(request, 'penerbit.html')
+
+def tambah_buku(request):
+    form = FormBuku()
+    
+    konteks = {
+        'form' : form,
+    }
+    
+    return render(request, 'tambah_buku.html', konteks)
