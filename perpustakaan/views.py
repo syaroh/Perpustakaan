@@ -3,6 +3,12 @@ from perpustakaan.models import Buku
 from perpustakaan.form import FormBuku
 from django.contrib import messages
 
+def hapus_buku(request, id_buku):
+    buku = Buku.objects.filter(id=id_buku)
+    buku.delete()
+    
+    messages.success(request, "Data Berhasil Dihapus!")
+    return redirect('buku')
 
 def ubah_buku(request, id_buku):
     buku = Buku.objects.get(id=id_buku)

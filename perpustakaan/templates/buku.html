@@ -5,9 +5,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3> Data Buku
-                <a href={% url 'tambah_buku' %}>Tambah</a>
+            <h3>
+                Data Buku
+                <a href={% url 'tambah_buku' %} class="btn btn-primary">Tambah</a>
             </h3>
+
+            {% for message in messages %}
+                {% if message %}
+                <div class="alert alert-success">{{ message }}</div>
+                {% endif %}
+            {% endfor %}
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -16,6 +23,7 @@
                         <th>PENERBIT</th>
                         <th>JUMLAH</th>
                         <th>KELOMPOK</th>
+                        <th>ACTION</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,6 +34,9 @@
                         <td>{{ buku.penerbit }}</td>
                         <td>{{ buku.jumlah }}</td>
                         <td>{{ buku.kelompok_id }}</td>
+                        <td>
+                            <a href="{% url 'hapus_buku' buku.id %}" class="btn btn-danger">Hapus</a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
