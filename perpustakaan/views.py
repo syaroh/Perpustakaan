@@ -14,7 +14,7 @@ def ubah_buku(request, id_buku):
     buku = Buku.objects.get(id=id_buku)
     template = 'ubah-buku.html'
     if request.POST:
-        form = FormBuku(request.POST, instance=buku)
+        form = FormBuku(request.POST, request.FILES, instance=buku)
         if form.is_valid():
             form.save()
             messages.success(request, "Data Berhasil Diperbarui...!",)
@@ -44,7 +44,7 @@ def penerbit(request):
 
 def tambah_buku(request):
     if request.POST:
-        form = FormBuku(request.POST)
+        form = FormBuku(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             form = FormBuku()
